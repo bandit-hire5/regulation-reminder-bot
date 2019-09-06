@@ -1,0 +1,17 @@
+version: "2.1"
+
+networks:
+  tbot:
+
+services:
+  bot-postgres:
+    image: postgres:10.4-alpine
+    container_name: bot-postgres
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_DB=telegram_bot_db
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=1234567
+    networks:
+      - tbot
