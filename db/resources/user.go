@@ -7,6 +7,7 @@ const UsersTableName = "users"
 type User struct {
 	ID               int64     `db:"id"`
 	CreatedAt        time.Time `db:"created_at"`
+	UpdatedAt        time.Time `db:"updated_at"`
 	TelegramID       int64     `db:"telegram_id"`
 	FirstName        string    `db:"first_name"`
 	LastName         string    `db:"last_name"`

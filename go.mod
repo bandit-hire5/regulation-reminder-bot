@@ -4,6 +4,7 @@ require (
 	github.com/bot-api/telegram v0.0.0-20170115211335-b7abf87c449e
 	github.com/caarlos0/env v3.5.0+incompatible
 	github.com/go-ozzo/ozzo-dbx v1.0.15
+	github.com/jteeuwen/go-bindata v3.0.7+incompatible // indirect
 	github.com/lib/pq v1.2.0
 	github.com/pkg/errors v0.8.1
 	github.com/rubenv/sql-migrate v0.0.0-20190902133344-8926f37f0bc1

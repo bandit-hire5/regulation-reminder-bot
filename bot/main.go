@@ -4,6 +4,7 @@ import (
 	"log"
 
 	"github.com/telegram-bot/regulation-reminder-bot/bot/commands"
+	"github.com/telegram-bot/regulation-reminder-bot/bot/handlers"
 
 	"github.com/bot-api/telegram"
 	"github.com/bot-api/telegram/telebot"
@@ -43,7 +44,7 @@ func (a *Bot) Start() error {
 	netCtx, cancel := context.WithCancel(context.Background())
 	defer cancel()
 
-	bot.HandleFunc(commands.Handle(config))
+	bot.HandleFunc(handlers.Handle(config))
 
 	// Use command middleware, that helps to work with commands
 	bot.Use(telebot.Commands(map[string]telebot.Commander{
