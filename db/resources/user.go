@@ -12,6 +12,7 @@ type User struct {
 	FirstName        string    `db:"first_name"`
 	LastName         string    `db:"last_name"`
 	Username         string    `db:"username"`
+	AvgOdometer      int64     `db:"avg_odometer"`
 	Odometer         int64     `db:"odometer"`
 	EnableMonitoring bool      `db:"enable_monitoring"`
 }

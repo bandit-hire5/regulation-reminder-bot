@@ -12,13 +12,15 @@ import (
 
 var actionMap map[int64]string
 var jobMap map[int64]*resources.Job
+var chanMap map[int64]chan bool
 
 func Handle(config conf.Config) telebot.HandlerFunc {
 	actionMap = make(map[int64]string)
 	jobMap = make(map[int64]*resources.Job)
+	chanMap = make(map[int64]chan bool)
 
 	return func(ctx context.Context) error {
-		message := messages.New(ctx, config, actionMap, jobMap)
+		message := messages.New(ctx, config, actionMap, jobMap, chanMap)
 
 		return message.Run()
 	}

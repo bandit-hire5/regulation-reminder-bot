@@ -2,6 +2,7 @@ package messages
 
 import (
 	"fmt"
+	"time"
 
 	"github.com/bot-api/telegram/telebot"
 
@@ -21,8 +22,16 @@ func (m *Message) QueryJoBList() error {
 	for _, job := range list {
 		if job.Type == "odometer" {
 			displayMsg += fmt.Sprintf(
-				"%d. %s (%d)\n",
+				"%d. %s (after %d km)\n",
 				job.ID, job.Name, job.LastOdometer+job.PerOdometer-m.user.Odometer,
+			)
+		} else {
+			date := job.LastDate.AddDate(0, 0, int(job.PerDays))
+			duration := date.Sub(time.Now())
+
+			displayMsg += fmt.Sprintf(
+				"%d. %s (after %d days)\n",
+				job.ID, job.Name, int(duration.Hours()/24),
 			)
 		}
 	}

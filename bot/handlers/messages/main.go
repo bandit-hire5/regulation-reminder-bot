@@ -16,15 +16,23 @@ type Message struct {
 	config    conf.Config
 	actionMap map[int64]string
 	jobMap    map[int64]*resources.Job
+	chanMap   map[int64]chan bool
 	user      *resources.User
 }
 
-func New(ctx context.Context, config conf.Config, actionMap map[int64]string, jobMap map[int64]*resources.Job) *Message {
+func New(
+	ctx context.Context,
+	config conf.Config,
+	actionMap map[int64]string,
+	jobMap map[int64]*resources.Job,
+	chanMap map[int64]chan bool) *Message {
+
 	return &Message{
 		ctx:       ctx,
 		config:    config,
 		actionMap: actionMap,
 		jobMap:    jobMap,
+		chanMap:   chanMap,
 	}
 }
 
@@ -61,6 +69,10 @@ func (m *Message) Run() error {
 			return m.QueryPerDate()
 		case "/job-list":
 			return m.QueryJoBList()
+		case "/start-monitoring":
+			return m.QueryStartMonitoring()
+		case "/stop-monitoring":
+			return m.QueryStopMonitoring()
 		default:
 			delete(m.actionMap, user.ID)
 
